@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import 'primeicons/primeicons.css';
-import 'primereact/resources/themes/rhea/theme.css';
+import 'primereact/resources/themes/fluent-light/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 

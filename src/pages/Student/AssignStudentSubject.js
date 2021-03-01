@@ -15,7 +15,9 @@ import { Column } from 'primereact/column';
 import { Dropdown } from 'primereact/dropdown';
 
 import axios from "axios";
-
+import ThemeButton from '../../utils/control/ThemeButton'
+import IconThemeButton from '../../utils/control/IconThemeButton'
+import IconSearchButton from '../../utils/control/IconSearchButton'
 
 
 export default function AssignStudentSubject() {
@@ -38,6 +40,7 @@ export default function AssignStudentSubject() {
 
     const onCountryChange = (e) => {
         setSelectedCountry(e.value);
+        console.log("onArrayChange" , selectedCountry);
     }
 
     const selectedCountryTemplate = (option, props) => {
@@ -73,8 +76,8 @@ export default function AssignStudentSubject() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" />
+                <IconThemeButton theme="danger" icon="deleteIcon" fontSize="medium" />
+                <IconThemeButton theme="primary" icon="editIcon" size="medium" />
             </React.Fragment>
         );
     }
@@ -96,19 +99,32 @@ export default function AssignStudentSubject() {
                                     <div className="p-col-12 p-md-6 p-md-6">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="Search by" />
-                                            <Button icon="pi pi-search" className="p-button-warning" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
                                     </div>
                                 </div>
                                 <hr />
-                                <div className="card">
-                                    <DataTable value={customers} paginator pageLinkSize={2}
-                                        rows={5}
-                                    >
-                                        <Column selectionMode="multiple" style={{ width: '3em' }} />
-                                        <Column field="title" header="TITLE" style={{ textAlign: 'center' }}></Column>
-                                        <Column body={actionBodyTemplate} style={{ textAlign: 'center' }}></Column>
-                                    </DataTable>
+                                <div className="box">
+                                    <br />
+                                    <div className="p-grid  p-justify-end vertical-container">
+                                        <DataTable value={customers} paginator pageLinkSize={2}
+                                            rows={5}
+                                        >
+                                            <Column selectionMode="multiple" style={{ width: '3em' }} />
+                                            <Column field="id" header="TITLE" style={{ textAlign: 'center' }}></Column>
+                                            <Column field="title" header="TITLE" style={{ textAlign: 'center' }}></Column>
+                                            <Column body={actionBodyTemplate} header="ACTION" style={{ textAlign: 'center' }}></Column>
+                                        </DataTable>
+                                        <br />
+
+
+                                    </div>
+                                    <div className="p-grid p-fluid p-justify-end">
+                                        <div className="p-col-offset-12, p-col-offset-6 ">
+                                            <ThemeButton type="submit" theme="primary" icon="assignIcon" text="Assign" size="medium" />
+                                        </div>
+
+                                    </div>
                                 </div>
                             </PanelControl>
                         </div>
@@ -119,7 +135,7 @@ export default function AssignStudentSubject() {
                                     <div className="p-col-12 p-md-6 p-md-6">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="Search by" />
-                                            <Button icon="pi pi-search" className="p-button-warning" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
                                     </div>
                                 </div>

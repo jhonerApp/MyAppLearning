@@ -7,10 +7,13 @@ import * as IOIcons from "react-icons/io5";
 import * as GOIcons from "react-icons/go";
 import * as MDIcons from "react-icons/md";
 import * as RIIcons from "react-icons/ri";
-
+import * as CGIcons from "react-icons/cg";
+import * as IOOIcons from "react-icons/io";
 
 import { Panel } from 'primereact/panel';
 import { Avatar } from 'primereact/avatar';
+
+
 
 function PanelControl(props) {
 
@@ -20,9 +23,9 @@ function PanelControl(props) {
             case "studentIcon":
                 return <FAIcons.FaRegUserCircle />;
             case "teachertIcon":
-                return <FAIcons.FaChalkboardTeacher />;
+                return <CGIcons.CgUserList />;
             case "studentListIcon":
-                return <FAIcons.FaRegListAlt />;
+                return <IOOIcons.IoMdList />;
             case "subjectIcon":
                 return <FAIcons.FaClipboardList />;
             case "teacherListIcon":

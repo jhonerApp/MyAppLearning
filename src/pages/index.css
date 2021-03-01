@@ -236,3 +236,15 @@ input.customTxtWidth150px{
     background-color: #FFD8B2;
     color: #805B36;
 }
+.hoverClass .p-tooltip-text {
+    background-color: red !important;
+  }
+.click:hover {
+    background:grey;
+    opacity: 0.1;
+}
+
+.error {
+    color: red;
+  }
+  

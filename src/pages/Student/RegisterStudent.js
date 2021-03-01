@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import '../../pages/index.css'
 import { Panel } from 'primereact/panel';
@@ -15,12 +15,115 @@ import { Column } from 'primereact/column';
 import axios from "axios";
 import { Dropdown } from 'primereact/dropdown';
 
+import ThemeButton from '../../utils/control/ThemeButton'
+import IconThemeButton from '../../utils/control/IconThemeButton'
+import IconSearchButton from '../../utils/control/IconSearchButton'
+
+
+import { Formik, Form, ErrorMessage, FormControl } from "formik"
+import FormikInput from "../../utils/Formik/FormikInput";
+import FormikDropdown from "../../utils/Formik/FormikDropdown";
+import { Messages } from 'primereact/messages';
+
+import * as Yup from "yup";
+
 
 
 export default function RegisterStudent() {
+
+
+    // const Validator = new Validation({
+    //     login: [
+    //         {
+    //             rule: requiredRule,
+    //             message: 'Please fill out the login'
+    //         },
+    //         {
+    //             rule: lengthRule(5),
+    //             message: 'Login should be at least 5 characters long'
+    //         }
+    //     ],
+    //     password: [
+    //         {
+    //             rule: requiredRule,
+    //             message: 'Please fill out the password'
+    //         },
+    //         {
+    //             rule: lengthRule(8),
+    //             message: 'Password should be at least 8 characters long'
+    //         }
+    //     ]
+    // });
+
+    // const [stateForm, setForm] = useState({
+    //     login: '',
+    //     password: ''
+    // })
+
+    // const onChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setForm(Validator.validate({ ...name, [name]: value }));
+    //     console.log(stateForm)
+    // }
+
+    // const errors = Validator.getErrors(stateForm);
+
+
+
+    const msgs1 = useRef(null);
+    useEffect(() => {
+        // msgs1.current.show({
+        //     severity: 'error', sticky: true, content: (
+        //         <React.Fragment>
+        //             <div className="p-grid">
+        //                 <div className="p-col p-col-align-start">
+        //                     <div className="box"><b>Please fill up the required filed!</b></div>
+        //                 </div>
+        //             </div>
+
+        //         </React.Fragment>
+        //     )
+
+        // });
+    }, [])
+    const initialValues = {
+        lastname: "",
+        firstname: "",
+        selectSection: ""
+    };
+
+    const validationSchema = Yup.object({
+        lastname: Yup.string().required("Required!"),
+        firstname: Yup.string().required("Required!"),
+        selectSection: Yup.string().required('Required'),
+
+    })
+
     const [selectedCountry, setSelectedCountry] = useState(null);
 
     const [customers, setCustomers] = useState([]);
+
+    const onCountryChange = (e) => {
+        setSelectedCountry(e.value);
+        console.log("selectedCountry", selectedCountry)
+    }
+
+    const selectedTemplate = (option, props) => {
+        if (option) {
+            return (
+                <div className=" country-item country-item-value">
+                    <div>{option.name}</div>
+                </div>
+            );
+        }
+
+        return (
+            <span>
+                {props.placeholder}
+            </span>
+        );
+    }
+
 
     const countries = [
         { name: 'Australia', code: 'AU' },
@@ -35,9 +138,11 @@ export default function RegisterStudent() {
         { name: 'I - SAMPAGUITA JOSE MARIE', code: 'US' }
     ];
 
-    const onCountryChange = (e) => {
-        setSelectedCountry(e.value);
+    const onSubmit = (values) => {
+        console.log("Submit", values);
+        alert("Alert");
     }
+
 
     const selectedCountryTemplate = (option, props) => {
         if (option) {
@@ -71,64 +176,76 @@ export default function RegisterStudent() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" />
+                <IconThemeButton theme="danger" icon="deleteIcon" fontSize="medium" />
+                <IconThemeButton theme="primary" icon="editIcon" size="medium" />
             </React.Fragment>
         );
     }
 
     return (
+
         <div>
             <div className="content-wrapper">
                 <div className="content">
 
                     <div className="p-grid">
-
                         <div className="p-col-12">
                             <PanelControl header="REGISTER STUDENT" icon="studentIcon">
-                                <div className="p-grid p-fluid p-align-center">
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <label htmlFor="lastname">Lastname</label>
-                                        <InputText id="lastname" type="text" />
-                                    </div>
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <label htmlFor="firstname6">Firstname</label>
-                                        <InputText id="firstname6" type="text" />
-                                    </div>
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <label htmlFor="middlename">Middlename</label>
-                                        <InputText id="middlename" type="text" />
-                                    </div>
-                                </div>
-                                <div className="p-grid p-fluid p-align-center">
-
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <div className="p-inputgroup">
-                                            <InputText placeholder="Email" id="email" type="email" />
-                                        </div>
-                                    </div>
+                                <Formik
+                                    initialValues={initialValues}
+                                    validationSchema={validationSchema}
+                                    onSubmit={onSubmit}
+                                >
+                                    {(formik) => (
 
 
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <div className="p-inputgroup">
-                                            <InputText placeholder="Username" id="username" type="text" />
-                                        </div>
-                                    </div>
-                                    <div className="p-col-12 p-md-6 p-lg-4">
-                                        <Dropdown clas value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
-                                            valueTemplate={selectedCountryTemplate} />
-                                    </div>
-                                </div>
+                                        <Form>
+                                            {/* <Messages ref={msgs1} /> */}
+                                            {/* p-col-12 p-md-6 p-lg-4 */}
 
+                                            <div className="p-fluid p-formgrid p-grid">
+                                                <div className="p-field p-col-12 p-md-6  p-lg-4">
+                                                    <FormikInput type="text" id="lastname" name="lastname" label="Lastname" />
+                                                </div>
+                                                <div className="p-field p-col-12 p-md-6  p-lg-4">
+                                                    <FormikInput type="text" id="firstname" name="firstname" label="Firstname" />
+                                                </div>
+                                                <div className="p-field p-col-12 p-md-12  p-lg-4">
+                                                    <FormikInput type="text" id="middlename" name="middlename" label="Middlename" />
+                                                </div>
+                                            </div>
+                                            <div className="p-fluid p-formgrid p-grid">
 
-
+                                                <div className="p-field p-col-12 p-md-6   p-lg-4">
+                                                    <FormikInput type="text" id="email" name="email" label="email" />
+                                                </div>
+                                                <div className="p-field p-col-12 p-md-6 p-lg-4 ">
+                                                    <FormikInput type="text" id="username" name="username" label="username" />
+                                                </div>
+                                                <div className="p-field p-col-12 p-md-12  p-lg-4">
+                                                    {/* <FormikDropdown array={countries} name="selectSection" filteryBy="name" placeholder="Select section" value={selectedCountry} onChange={onCountryChange} valueTemplate={selectedTemplate} /> */}
+                                                    <FormikDropdown array={countries} name="selectSection" filteryBy="name" placeholder="Select section" />
+                                                    {/* <Dropdown id="selectSection" name="selectSection" value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
+                                                        valueTemplate={selectedCountryTemplate} /> */}
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div className="p-grid p-fluid p-justify-end">
+                                                <div className="p-col-offset-12, p-col-offset-6  ">
+                                                    <ThemeButton theme="danger" icon="exitIcon" text="DELETE" size="medium" />
+                                                    <ThemeButton type="submit" theme="primary" icon="addIcon" text="SAVE" size="medium" />
+                                                    <button type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    )}
+                                </Formik>
                                 <hr />
-
                                 <div className="p-grid p-fluid p-justify-end">
                                     <div className="p-col-12 p-md-6  p-lg-4">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="Search by" />
-                                            <Button icon="pi pi-search" className="p-button-warning" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
                                     </div>
                                 </div>
@@ -146,12 +263,15 @@ export default function RegisterStudent() {
                                         <Column body={actionBodyTemplate} header="ACTION" style={{ textAlign: 'center' }}></Column>
                                     </DataTable>
                                 </div>
+
+
                             </PanelControl>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     )
 }
 

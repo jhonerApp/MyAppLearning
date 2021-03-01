@@ -4,7 +4,7 @@ import '../../pages/index.css'
 import { Panel } from 'primereact/panel';
 import * as RIIcons from "react-icons/ri";
 
-import PanelControl from  '../../utils/control/PanelControl'
+import PanelControl from '../../utils/control/PanelControl'
 import { InputText } from 'primereact/inputtext';
 
 import { Avatar } from 'primereact/avatar';
@@ -14,7 +14,9 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios from "axios";
 
-
+import ThemeButton from '../../utils/control/ThemeButton'
+import IconThemeButton from '../../utils/control/IconThemeButton'
+import IconSearchButton from '../../utils/control/IconSearchButton'
 
 export default function RegisterTeacher() {
     const [customers, setCustomers] = useState([]);
@@ -34,8 +36,8 @@ export default function RegisterTeacher() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" />
+                <IconThemeButton theme="danger" icon="deleteIcon" fontSize="medium" />
+                <IconThemeButton theme="primary" icon="editIcon" size="medium" />
             </React.Fragment>
         );
     }
@@ -74,15 +76,23 @@ export default function RegisterTeacher() {
                                     </div>
 
                                 </div>
+                                <br />
+                                <div className="p-grid p-fluid p-justify-end">
+                                    <div className="p-col-offset-12, p-col-offset-6  ">
+                                        <ThemeButton type="submit" theme="danger" icon="exitIcon" text="DELETE" size="medium" />
+                                        <ThemeButton type="submit" theme="primary" icon="addIcon" text="SAVE" size="medium" />
+                                    </div>
+
+                                </div>
                                 <hr />
 
                                 <div className="p-grid p-fluid p-justify-end">
-                                        <div className="p-col-12 p-md-6  p-lg-4">
-                                            <div className="p-inputgroup">
-                                                <InputText placeholder="Search by" />
-                                                <Button icon="pi pi-search" className="p-button-warning" />
-                                            </div>
+                                    <div className="p-col-12 p-md-6  p-lg-4">
+                                        <div className="p-inputgroup">
+                                            <InputText placeholder="Search by" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
+                                    </div>
                                 </div>
 
 

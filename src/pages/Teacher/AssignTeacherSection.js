@@ -16,6 +16,10 @@ import { Dropdown } from 'primereact/dropdown';
 
 import axios from "axios";
 
+import ThemeButton from '../../utils/control/ThemeButton'
+import IconThemeButton from '../../utils/control/IconThemeButton'
+import IconSearchButton from '../../utils/control/IconSearchButton'
+
 
 
 export default function AssignTeacherSection() {
@@ -73,8 +77,8 @@ export default function AssignTeacherSection() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" />
+                <IconThemeButton theme="danger" icon="deleteIcon" fontSize="medium" />
+                <IconThemeButton theme="primary" icon="editIcon" size="medium" />
             </React.Fragment>
         );
     }
@@ -95,7 +99,7 @@ export default function AssignTeacherSection() {
                                     <div className="p-col-12 p-md-6 p-md-6">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="Search by" />
-                                            <Button icon="pi pi-search" className="p-button-warning" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
                                     </div>
                                 </div>
@@ -116,8 +120,8 @@ export default function AssignTeacherSection() {
 
                                     </div>
                                     <div className="p-grid p-fluid p-justify-end">
-                                        <div className="p-col-offset-12, p-col-offset-6 3 ">
-                                            <Button label="Success" className="p-button-sm p-button-success" icon="pi pi-check" iconPos="right" />
+                                        <div className="p-col-offset-12, p-col-offset-6 ">
+                                            <ThemeButton type="submit" theme="primary" icon="assignIcon" text="Assign" size="medium" />
                                         </div>
 
                                     </div>
@@ -130,7 +134,7 @@ export default function AssignTeacherSection() {
                                     <div className="p-col-12 p-md-6 p-md-6">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="Search by" />
-                                            <Button icon="pi pi-search" className="p-button-warning" />
+                                            <IconSearchButton icon="searchIcon" theme="primary" />
                                         </div>
                                     </div>
                                 </div>
