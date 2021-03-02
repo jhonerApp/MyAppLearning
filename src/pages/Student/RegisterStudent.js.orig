@@ -191,13 +191,94 @@ export default function RegisterStudent() {
                     <div className="p-grid">
                         <div className="p-col-12">
                             <PanelControl header="REGISTER STUDENT" icon="studentIcon">
+<<<<<<< HEAD
+                                <form name="frmSignup" id="frmSignup">
+                                    <div className="p-grid p-fluid  p-formgrid">
+                                        <div className="p-col-12 p-md-6 p-lg-4" >
+                                            <label htmlFor="lastname">Lastname</label>
+                                            <InputText id="lastname" type="text" />
+                                            <div >
+                                                <small id="username-help" className="p-error ">Username is not available.</small>
+                                            </div>
+                                        </div>
+                                        <div className="p-col-12 p-md-6 p-lg-4">
+                                            <label htmlFor="firstname6">Firstname</label>
+                                            <InputText id="firstname6" type="text" />
+                                            <div >
+                                                <small id="username-help" className="p-error ">11</small>
+                                            </div>
+                                        </div>
+                                        <div className="p-col-12 p-md-6 p-lg-4">
+                                            <label htmlFor="middlename">Middlename</label>
+                                            <InputText id="middlename" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="p-grid p-fluid  p-formgrid">
+||||||| merged common ancestors
+                                <div className="p-grid p-fluid p-align-center">
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <label htmlFor="lastname">Lastname</label>
+                                        <InputText id="lastname" type="text" />
+                                    </div>
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <label htmlFor="firstname6">Firstname</label>
+                                        <InputText id="firstname6" type="text" />
+                                    </div>
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <label htmlFor="middlename">Middlename</label>
+                                        <InputText id="middlename" type="text" />
+                                    </div>
+                                </div>
+                                <div className="p-grid p-fluid p-align-center">
+=======
                                 <Formik
                                     initialValues={initialValues}
                                     validationSchema={validationSchema}
                                     onSubmit={onSubmit}
                                 >
                                     {(formik) => (
+>>>>>>> origin
 
+<<<<<<< HEAD
+                                        <div className="p-col-12 p-md-6 p-lg-4">
+                                            <div className="p-inputgroup">
+                                                <InputText placeholder="Email" id="email" type="email" />
+                                            </div>
+                                        </div>
+
+
+                                        <div className="p-col-12 p-md-6 p-lg-4">
+                                            <div className="p-inputgroup">
+                                                <InputText placeholder="Username" id="username" type="text" />
+                                            </div>
+                                        </div>
+                                        <div className="p-col-12 p-md-6 p-lg-4">
+                                            <Dropdown clas value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
+                                                valueTemplate={selectedCountryTemplate} />
+                                        </div>
+                                    </div>
+                                </form>
+
+||||||| merged common ancestors
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <div className="p-inputgroup">
+                                            <InputText placeholder="Email" id="email" type="email" />
+                                        </div>
+                                    </div>
+
+
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <div className="p-inputgroup">
+                                            <InputText placeholder="Username" id="username" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="p-col-12 p-md-6 p-lg-4">
+                                        <Dropdown clas value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
+                                            valueTemplate={selectedCountryTemplate} />
+                                    </div>
+                                </div>
+=======
+>>>>>>> origin
 
                                         <Form>
                                             {/* <Messages ref={msgs1} /> */}

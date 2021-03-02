@@ -15,6 +15,12 @@ import { Column } from 'primereact/column';
 import axios from "axios";
 import { Dialog } from 'primereact/dialog';
 
+
+import ThemeButton from '../../utils/control/ThemeButton'
+import IconThemeButton from '../../utils/control/IconThemeButton'
+import IconSearchButton from '../../utils/control/IconSearchButton'
+
+
 export default function AttachModule() {
     const [customers, setCustomers] = useState([]);
     const getCustomersLarge = () => {
@@ -38,8 +44,9 @@ export default function AttachModule() {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" />
-                <Button icon="pi pi-trash" className="p-button-rounded p-button-warning" />
+                <IconThemeButton theme="danger" icon="deleteIcon" />
+                <IconThemeButton theme="primary" icon="editIcon" />
+                <IconThemeButton theme="info" icon="assignIcon" />
             </React.Fragment>
         );
     }
@@ -65,7 +72,7 @@ export default function AttachModule() {
     const renderFooter = (name) => {
         return (
             <div>
-                <Button label="SAVE" icon="pi pi-check" iconPos="right"  onClick={() => onHide(name)} autoFocus />
+                <Button label="SAVE" icon="pi pi-check" iconPos="right" onClick={() => onHide(name)} autoFocus />
             </div>
         );
     }
@@ -91,9 +98,17 @@ export default function AttachModule() {
                             <PanelControl header="ATTACH MODULE" icon="attachmodule">
                                 <div className="box">
                                     <br />
+                                    <div className="p-grid p-fluid p-justify-end">
+                                        <div className="p-col-offset-12, p-col-offset-6  ">
+                                            <ThemeButton type="submit" theme="info" icon="fileIcon" text="FILE" size="medium" onClick={() => onClick('displayBasic')}/>
+                                            <ThemeButton type="submit" theme="primary" icon="urlIcon" text="LINK" size="medium" />
+                                        </div>
+                                    </div>
+                                    <hr />
                                     <div className="p-grid  p-justify-end vertical-container">
-                                        <Button type="button" label="FILE" icon="pi pi-folder-open" iconPos="right" className="p-button-sm p-button-help p-mr-2 p-mb-2" onClick={() => onClick('displayBasic')} />
-                                        <Button type="button" label="LINK" icon="pi pi-link" iconPos="right" className="p-button-sm p-button-warning p-mb-2" />
+
+
+
                                         <DataTable value={customers} paginator pageLinkSize={2}
                                             rows={5}
                                         >
@@ -122,7 +137,7 @@ export default function AttachModule() {
                                     <div className="p-col-12 p-md-6 p-lg-12">
                                         <div className="p-inputgroup">
                                             <InputText placeholder="BROWSER FILE" />
-                                            <Button icon="pi pi-folder-open"   className="p-button-warning" />
+                                            <Button icon="pi pi-folder-open" className="p-button-warning" />
                                         </div>
                                     </div>
                                 </div>
