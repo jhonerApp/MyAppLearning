@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef, Fragment } from 'react'
 import TextError from './TextError';
 import {
     Field,
@@ -14,44 +14,65 @@ function DropdownSelect(props) {
     const { label, name, array, filteryBy, ...rest } = props;
 
 
-    const onArrayChange = (e) => {
+
+    const onArrayChange = (e, { value }, setFieldValue) => {
+        setFieldValue('selectSection', e.value);
         setSelectedArray(e.value);
-        alert("")
         console.log("onArrayChange", e.value);
-        console.log("onArrayChange1", selectedArray);
+
     }
 
+ 
+
+
     const selectedTemplate = (option, props) => {
+        console.log("selectedTemplate props", props);
+        console.log("selectedTemplate option", option);
+
         if (option) {
             return (
-                <div className=" country-item country-item-value">
-                    <div>{option.name}</div>
+                <div className=" country-item country-item-value" >
+                    <div >{option.name}</div>
                 </div>
-            );
+            )
         }
+
 
         return (
             <span>
                 {props.placeholder}
             </span>
         );
+
+     
+
+
+    }
+    const onArrayChange1 = (e, setFieldValue) => {
+        setFieldValue('selectSection', e.value.name);
+        setSelectedArray(e.value);
+
+        console.log("onArrayChange", e.value);
+
     }
 
     return (
         <div>
-            {/* <Field as='select' id={name} name={name} {...rest} >
-                {({ field, form }) => {
-                    console.log("DropdownSelect" , selectedArray);
+
+            <Field as='select' name={name} value={selectedArray}>
+                {({ field, form: { setFieldValue } }) => {
+
+
+                    console.log("field", field);
+                    // console.log("DropdownSelect", field.value.name);
                     return (
-                        < Dropdown value={selectedArray} options={array} onChange={onArrayChange} optionLabel={filteryBy} filter showClear filterBy={filteryBy}
-                            valueTemplate={selectedTemplate} {...field}  {...props} className={form.errors[name] && form.touched[name] ? "p-invalid" : null} />
+                        <Dropdown id={name} value={selectedArray} options={array} onChange={(e) => onArrayChange1(e, setFieldValue)} optionLabel={filteryBy} filter showClear filterBy={filteryBy}
+                            valueTemplate={selectedTemplate}{...props} />
                     )
                 }}
-            </Field> */}
-
-            < Dropdown value={selectedArray} options={array} onChange={onArrayChange} optionLabel={filteryBy} filter showClear filterBy={filteryBy}
-                valueTemplate={selectedTemplate} {...props} />
-            {/* <ErrorMessage name={name} component={TextError} /> */}
+            </Field>
+            <ErrorMessage name={name} component={TextError} />
+         
         </div>
     )
 }
