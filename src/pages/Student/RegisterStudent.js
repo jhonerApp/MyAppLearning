@@ -95,7 +95,11 @@ export default function RegisterStudent() {
     const validationSchema = Yup.object({
         lastname: Yup.string().required("Required!"),
         firstname: Yup.string().required("Required!"),
-        selectSection: Yup.string().required('Required'),
+      selectSection: Yup.string().required("Required!"),
+        // selectSection: Yup.object().shape({
+        //     name: Yup.string().required("Is required"),
+        //     code: Yup.string().required("Is required"),
+        //   })
 
     })
 
