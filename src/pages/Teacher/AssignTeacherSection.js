@@ -42,6 +42,8 @@ export default function AssignTeacherSection() {
 
     const onCountryChange = (e) => {
         setSelectedCountry(e.value);
+        console.log(e.value);
+        
     }
 
     const selectedCountryTemplate = (option, props) => {
@@ -93,7 +95,7 @@ export default function AssignTeacherSection() {
                             <PanelControl header="TEACHER LIST" icon="teacherListIcon">
                                 <div className="p-grid p-fluid p-align-center">
                                     <div className="p-col-12 p-md-6 p-md-2">
-                                        <Dropdown clas value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
+                                        <Dropdown  value={selectedCountry} options={countries} onChange={onCountryChange} optionLabel="name" filter showClear filterBy="name" placeholder="Select section"
                                             valueTemplate={selectedCountryTemplate} />
                                     </div>
                                     <div className="p-col-12 p-md-6 p-md-6">

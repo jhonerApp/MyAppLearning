@@ -236,6 +236,10 @@ input.customTxtWidth150px{
     background-color: #FFD8B2;
     color: #805B36;
 }
+<<<<<<< HEAD
+
+||||||| merged common ancestors
+=======
 .hoverClass .p-tooltip-text {
     background-color: red !important;
   }
@@ -248,3 +252,4 @@ input.customTxtWidth150px{
     color: red;
   }
   
+>>>>>>> origin
